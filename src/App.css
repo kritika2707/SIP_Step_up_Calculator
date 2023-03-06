@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,71 @@
   to {
     transform: rotate(360deg);
   }
+} */
+body{
+  margin: 0%;
+  padding: 0%;
+}
+
+.parent{
+border: 1px solid black;
+height: 100vh;
+display: flex;
+flex: row;
+background-color: #f1f5fa;
+}
+
+.Dashboard{
+  width: 20%;
+  background-color: #526fe4;
+}
+
+.calculator{
+  display: flex;
+  background-color: #ffffff;
+  width: 80%;
+
+  margin-top: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.stepUpCalculaor{
+  border: 1px solid gray;
+  border-radius: 4px;
+  background-color: #fcf6f6;
+  width: 50%;
+  height: 550px;
+  /* padding: 40px; */
+  margin-top: 80px;
+  margin-left: 40px;
+  margin-right: 40px;
+  
+}
+.graph{
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: #fcf6f6;
+  width: 50%;
+  height: 550px;
+  margin-top: 80px;
+  margin-right: 40px;
+  
+}
+
+h3,h4{
+  margin: 10px;
+  padding: 10px;
+}
+.rangeSlider input{
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 20px;
+}
+
+input{
+  width: 80%;
+}
+svg{
+  padding-left: 20px;
 }
