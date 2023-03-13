@@ -89,11 +89,12 @@ position: absolute;
   height: 80%;
   padding: 3px;
   position: relative;
-  margin-top: 38px;
+  /* margin-top: 38px; */
 }
 .graph{
   float: left;
   margin-left: 30px;
+  padding-top: 15px;
 }
 
 h3,h4{
@@ -130,4 +131,14 @@ svg{
 .textforgraph{
   margin-top: 0%;
   font-size: 18px;
+}
+.desc-text{
+  margin-left: 20px;
+  margin-top: -10px;
+}
+.calc_text{
+  padding-top: 12px;
+}
+.graph-div{
+  margin-left: -25px;
 }

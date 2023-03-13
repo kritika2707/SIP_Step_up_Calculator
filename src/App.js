@@ -10,7 +10,10 @@ function App() {
       <div className="main-screen">
       <h3>←Back</h3>
       <div className="calculator">
+        <div className="calc_text">
         <h3>SIP Step-Up Calculator</h3>
+        <p className="desc-text">It tells you how much wealth you can create by increasing monthly investment</p>
+        </div>
         <SliderCalculator />
         <Graph />
       </div>
