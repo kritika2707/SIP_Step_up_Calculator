@@ -4,16 +4,21 @@ import SliderCalculator from "./Assets/SliderCalculator";
 import Graph from "./Assets/Graph";
 import SipCalculator from "./Assets/SipCalculator";
 function App() {
+  
   return (
     <div className="parent">
       <div className="Dashboard"></div>
-
-      <h3></h3>
+      <div className="main-screen">
+      <h3>←Back</h3>
       <div className="calculator">
+        <div className="calc_text">
+        <h3>SIP Step-Up Calculator</h3>
+        <p className="desc-text">It tells you how much wealth you can create by increasing monthly investment</p>
+        </div>
         <SliderCalculator />
-      {/* <SipCalculator/> */}
-      {/* <Graph /> */}
+        <Graph />
       </div>
+    </div>
     </div>
   );
 }
