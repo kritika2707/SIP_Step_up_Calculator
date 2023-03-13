@@ -94,7 +94,32 @@ h3,h4{
 
 input{
   width: 90%;
+  
 }
 svg{
   padding-left: 20px;
+}
+
+.value{
+  /* border: 1px solid black; */
+  width: 20%;
+  background-color: #b7c3f3;
+  margin: 0px 22px 0px 350px;
+  padding: 0px 0px 0px 0px;
+}
+
+p{
+  padding: 0px 0px 0px 0px;
+  margin: -38px 0px 0px 0px;
+}
+
+.labeldiv{
+  background-color: red;
+  display: inline;
+}
+
+.sld{
+  /* padding: 20px; */
+  margin-left: 350px;
+
 }
