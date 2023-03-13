@@ -47,7 +47,7 @@ height: 100vh;
 /* flex: row; */
 display: block;
 width: 100%;
-background-color: #f1f5fa;
+background-color: #000000;
 position: absolute;
 }
 
@@ -68,10 +68,10 @@ position: absolute;
   position: absolute;
 }
 .calculator{
-  width: 80%;
+  width: 95%;
   background-color: #ffffff;
   height: 90%;
-  margin: auto;
+  margin: auto 22px;
   padding: auto;
 }
 .stepUpCalculator{
@@ -85,7 +85,7 @@ position: absolute;
   display: inline;
   border-radius: 3px;
   background-color: #ffffff;
-  width: 40%;
+  width: 42%;
   height: 80%;
   padding: 3px;
   position: relative;
@@ -94,7 +94,7 @@ position: absolute;
 .graph{
   float: left;
   margin-left: 30px;
-  padding-top: 15px;
+  padding-top: 4px;
 }
 
 h3,h4{
@@ -131,13 +131,14 @@ svg{
 .textforgraph{
   margin-top: 0%;
   font-size: 18px;
+  padding-top: 10px;
 }
 .desc-text{
   margin-left: 20px;
   margin-top: -10px;
 }
 .calc_text{
-  padding-top: 12px;
+  padding-top: 5px;
 }
 .graph-div{
   margin-left: -25px;
