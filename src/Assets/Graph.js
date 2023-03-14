@@ -1,69 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-function Calculation(MonthlyInvestment,InvestmentPeriod, RateOfReturn, YearlyIncrement, flag){
-  console.log("HEllo")
-    // console.log(MonthlyInvestment);
-    // console.log(InvestmentPeriod);
-    // var MonthlyInvestment = MonthlyInvestment;
-    var PeriodInMonth = (InvestmentPeriod)*12;
+function Calculation({MonthlyInvestment,InvestmentPeriod, RateOfReturn, YearlyIncrement},flag){
+    const [PeriodInMonth,setPeriodInMonth] = useState();
+    const [incrementedAmount, setIncrementedAmount] = useState(0);
+    const [CumulationAmount, setCumulationAmount] = useState(0);
+    setPeriodInMonth(InvestmentPeriod * 12);
     RateOfReturn = (RateOfReturn)/1200;
-    let TotalSIPWithStepUp = 0;
-    for(var i=1; i<=PeriodInMonth; i++)
+    // let TotalSIPWithStepUp = 0;
+    const [TotalSIPWithStepUp, setTotalSIPWithStepUp] = useState(0);
+    for(let i=1; i<=PeriodInMonth; i++)
     {        
     if(i!==1)
     {
-    if(i%12===1)
+    if(i%12==1)
     {
-    var incrementedAmount=Math.floor(MonthlyInvestment*(YearlyIncrement/100));
-    MonthlyInvestment= MonthlyInvestment + incrementedAmount;
+    setIncrementedAmount(Math.floor(MonthlyInvestment*(YearlyIncrement/100)));
+    MonthlyInvestment = MonthlyInvestment + incrementedAmount;
     }
     }
-    var CummulationAmount =MonthlyInvestment*(Math.pow((1+RateOfReturn),(PeriodInMonth-i+1)));        
-    TotalSIPWithStepUp = TotalSIPWithStepUp + CummulationAmount; 
+    setCumulationAmount(MonthlyInvestment*(Math.pow((1+RateOfReturn),(PeriodInMonth-i+1))));        
+    setTotalSIPWithStepUp(TotalSIPWithStepUp + CumulationAmount); 
     }
     if(flag === "true")
     return TotalSIPWithStepUp;
     else
-    return CummulationAmount;            
+    return MonthlyInvestment;            
   }    
-function Graph(MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement){
+function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement}){
   // console.log(MonthlyInvestment);
-// console.log(InvestmentPeriod);
-  let estimatedReturns = Calculation(MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement,"true");
+  var estimatedReturns = Calculation({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement},"true");
   // console.log(estimatedReturns);
-  let investedAmount = Calculation(MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement,"false");
-  // console.log(result);
-const data = [
+  var investedAmount = Calculation({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement},"false");
+  console.log(investedAmount);
+  const data = [
   {
     name: '0',
+    bline: estimatedReturns,
+    vline: investedAmount,
     value: 0,
   },
   {
     name: '1',
+    bline: estimatedReturns,
+    vline: investedAmount,
     value: 95000,
   },
   {
     name: '2',
+    bline: estimatedReturns,
+    vline: investedAmount,
     value: 190000,
   },
   {
     name: '3',
+    bline: estimatedReturns,
+    vline: investedAmount,    
     value: 285000,
   },
   {
     name: '4',
+    bline: estimatedReturns,
+    vline: investedAmount,
     value: 380000,
   },
   {
     name: '5',
+    bline: estimatedReturns,
+    vline: investedAmount,
     value: 475000,
   },
-];
- return (
+  ];
+  return (
   <>
-  
   <div className="graph">
   <div className="textforgraph">
     <span >
@@ -101,13 +111,12 @@ const data = [
             right: 20,
             left: 0,
             bottom: 0,
-          }}
-        >
+          }}>
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Line type="monotone" dataKey={investedAmount} stroke="#2B3467" />
-          <Line type="monotone" dataKey={estimatedReturns} stroke="#362FD9" />
+          <Line type="monotone" dataKey="bline" stroke="#2B3467" activeDot={{r:8}}/>
+          <Line type="monotone" dataKey="vline" stroke="#362FD9" />
         </LineChart>
       </ResponsiveContainer>
     </div>

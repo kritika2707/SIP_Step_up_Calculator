@@ -42,7 +42,7 @@ function Calculator() {
             changeYearlyIncrement={changeYearlyIncrement}
           />
         </div>
-        <Graph />
+        <Graph MonthlyInvestment={MonthlyInvestment} InvestmentPeriod={InvestmentPeriod} RateOfReturn={RateOfReturn} YearlyIncrement={YearlyIncrement}/>
       </div>
     </>
   );
