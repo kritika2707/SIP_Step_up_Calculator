@@ -1,36 +1,67 @@
 import React from "react";
-// import GraphComponent from '../components/graphComponent';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-// import Calculation from "./Calculation";
+// import { RoomPreferencesSharp } from "@mui/icons-material";
 
-function Graph(){
-  const data = [
+function Calculation(MonthlyInvestment,InvestmentPeriod, RateOfReturn, YearlyIncrement, flag){
+  console.log("HEllo")
+    // console.log(MonthlyInvestment);
+    // console.log(InvestmentPeriod);
+    // var MonthlyInvestment = MonthlyInvestment;
+    var PeriodInMonth = (InvestmentPeriod)*12;
+    RateOfReturn = (RateOfReturn)/1200;
+    let TotalSIPWithStepUp = 0;
+    for(var i=1; i<=PeriodInMonth; i++)
+    {        
+    if(i!==1)
     {
-      name: '0',
-      value: 0,
-    },
+    if(i%12===1)
     {
-      name: '1',
-      value: 95000,
-    },
-    {
-      name: '2',
-      value: 190000,
-    },
-    {
-      name: '3',
-      value: 285000,
-    },
-    {
-      name: '4',
-      value: 380000,
-    },
-    {
-      name: '5',
-    },
-  ];
-  
+    var incrementedAmount=Math.floor(MonthlyInvestment*(YearlyIncrement/100));
+    MonthlyInvestment= MonthlyInvestment + incrementedAmount;
+    }
+    }
+    var CummulationAmount =MonthlyInvestment*(Math.pow((1+RateOfReturn),(PeriodInMonth-i+1)));        
+    TotalSIPWithStepUp = TotalSIPWithStepUp + CummulationAmount; 
+    }
+    if(flag === "true")
+    return TotalSIPWithStepUp;
+    else
+    return CummulationAmount;            
+}
+
+function Graph(MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement){
+  // console.log(MonthlyInvestment);
+// console.log(InvestmentPeriod);
+  let estimatedReturns = Calculation(MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement,"true");
+  // console.log(estimatedReturns);
+  let investedAmount = Calculation(MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement,"false");
+  // console.log(result);
+const data = [
+  {
+    name: '0',
+    value: 0,
+  },
+  {
+    name: '1',
+    value: 95000,
+  },
+  {
+    name: '2',
+    value: 190000,
+  },
+  {
+    name: '3',
+    value: 285000,
+  },
+  {
+    name: '4',
+    value: 380000,
+  },
+  {
+    name: '5',
+  },
+];
  return (
   <div className="graph">
       <div className="textforgraph"><span Style="color:grey;margin-left:10px;margin-top:10px">After <span  Style="color:black;font-weight:bold">5 year's</span> you will have</span>
@@ -38,6 +69,7 @@ function Graph(){
       <p Style="color:grey;margin-left:12px;margin-top:-19px">That's<span Style="color:#FF6E31;margin-left:-15px;font-weight:bold"><CurrencyRupeeIcon/>1,24,369</span> as potential capital gains on your investment of<span Style="color:#03C988;margin-left:-15px;font-weight:bold"><CurrencyRupeeIcon/>7,32,612</span></p>
       </div>
     <ResponsiveContainer className="graph-div" width="100%" height="65%">
+      
         <LineChart
           width={450}
           height={450}
@@ -51,10 +83,10 @@ function Graph(){
         >
         
           <XAxis dataKey="name" />
-          <YAxis dataKey="value"/>
+          <YAxis />
           <Tooltip />
-          <Line type="monotone" stroke="#2B3467" />
-          <Line type="monotone" stroke="#362FD9" />
+          <Line type="monotone" dataKey={investedAmount} stroke="#2B3467" />
+          <Line type="monotone" dataKey={estimatedReturns} stroke="#362FD9" />
         </LineChart>
       </ResponsiveContainer>
   </div>
