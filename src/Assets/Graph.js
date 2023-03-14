@@ -1,27 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 function Calculation({MonthlyInvestment,InvestmentPeriod, RateOfReturn, YearlyIncrement},flag){
-    const [PeriodInMonth,setPeriodInMonth] = useState();
-    const [incrementedAmount, setIncrementedAmount] = useState(0);
-    const [CumulationAmount, setCumulationAmount] = useState(0);
-    setPeriodInMonth(InvestmentPeriod * 12);
+    let PeriodInMonth = (InvestmentPeriod)*12;
     RateOfReturn = (RateOfReturn)/1200;
-    // let TotalSIPWithStepUp = 0;
-    const [TotalSIPWithStepUp, setTotalSIPWithStepUp] = useState(0);
+    let TotalSIPWithStepUp = 0;
     for(let i=1; i<=PeriodInMonth; i++)
     {        
     if(i!==1)
     {
     if(i%12==1)
     {
-    setIncrementedAmount(Math.floor(MonthlyInvestment*(YearlyIncrement/100)));
-    MonthlyInvestment = MonthlyInvestment + incrementedAmount;
+    let incrementedAmount=Math.floor(MonthlyInvestment*(YearlyIncrement/100));
+    MonthlyInvestment= MonthlyInvestment + incrementedAmount;
     }
     }
-    setCumulationAmount(MonthlyInvestment*(Math.pow((1+RateOfReturn),(PeriodInMonth-i+1))));        
-    setTotalSIPWithStepUp(TotalSIPWithStepUp + CumulationAmount); 
+    let CummulationAmount =MonthlyInvestment*(Math.pow((1+RateOfReturn),(PeriodInMonth-i+1)));        
+    TotalSIPWithStepUp = TotalSIPWithStepUp + CummulationAmount; 
     }
     if(flag === "true")
     return TotalSIPWithStepUp;
@@ -78,23 +74,23 @@ function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncreme
   <div className="textforgraph">
     <span >
       After{" "}
-      <span className="AfterYearsOf"> 5 year's</span>{" "}
+      <span className="AfterYearsOf"> {InvestmentPeriod} year's</span>{" "}
       you will have
     </span>
     <h2 >
       <CurrencyRupeeIcon />
-      8,56,981
+      {estimatedReturns.toFixed(0)}
     </h2>
     <p >
       That's
       <span className="currencyRupeeInPara">
         <CurrencyRupeeIcon />
-        1,24,369
+        {investedAmount}
       </span>{" "}
       as potential capital gains on your investment of
       <span className="currencyRupeeInPara2" >
         <CurrencyRupeeIcon />
-        7,32,612
+        {investedAmount}
       </span>
     </p>
     </div>

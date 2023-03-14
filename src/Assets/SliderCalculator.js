@@ -201,7 +201,7 @@ import MuiInput from "@mui/material/Input";
   `;
 
   
-function SliderCalculator({index, mn, mx, value, setValue}){
+function SliderCalculator({index, mn, mx, value, setValue,steps}){
 
     const handleSliderChange = (event, newValue) => {
         setValue(newValue);
@@ -253,6 +253,7 @@ function SliderCalculator({index, mn, mx, value, setValue}){
                       min={mn}
                       max={mx}
                       marks={LabelArray[index]}
+                      step = {steps}
                       
                       value={typeof value === 'number' ? value : 0}
                       onChange={handleSliderChange}
