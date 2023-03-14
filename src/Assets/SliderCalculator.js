@@ -1,4 +1,3 @@
-// import React from "react";
 import React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -10,28 +9,28 @@ import MuiInput from "@mui/material/Input";
 
   const MonthlyInvestmentArray = [
     {
-      value: 50000,
-      label: "50000",
+      value: 500,
+      label: "500",
     },
     {
-      value: 240000,
-      label: "240000",
+      value: 24000,
+      label: "24000",
     },
     {
-      value: 430000,
-      label: "430000",
+      value: 43000,
+      label: "43000",
     },
     {
-      value: 620000,
-      label: "620000",
+      value: 62000,
+      label: "62000",
     },
     {
-      value: 810000,
-      label: "810000",
+      value: 81000,
+      label: "81000",
     },
     {
-      value: 1000000,
-      label: "1000000",
+      value: 100000,
+      label: "100000",
     },
   ];
 
@@ -135,44 +134,48 @@ import MuiInput from "@mui/material/Input";
       label: "1",
     },
     {
-      value: 13,
-      label: "13",
+      value: 2,
+      label: "2",
     },
     {
-      value: 25,
-      label: "25",
+      value: 3,
+      label: "3",
     },
     {
-      value: 37,
-      label: "37",
+      value: 4,
+      label: "4",
     },
     {
-      value: 49,
-      label: "49",
+      value: 5,
+      label: "5",
     },
     {
-      value: 61,
-      label: "61",
+      value: 6,
+      label: "6",
     },
     {
-      value: 72,
-      label: "72",
+      value: 7,
+      label: "7",
     },
     {
-      value: 84,
-      label: "84",
+      value: 8,
+      label: "8",
     },
     {
-      value: 96,
-      label: "96",
+      value: 9,
+      label: "9",
     },
     {
-      value: 108,
-      label: "108",
+      value: 10,
+      label: "10",
     },
     {
-      value: 120,
-      label: "120",
+      value: 11,
+      label: "11",
+    },
+    {
+      value: 12,
+      label: "12",
     },
   ];
 
@@ -210,10 +213,11 @@ function SliderCalculator({index, mn, mx, value, setValue}){
     return (
 
       <div className='slider-area'>
-          <Box sx={{ width: 500 }}>
+          <Box sx={{ width: 455 }}>
       
         
-              <Grid className="demo" container>
+              <Grid className="demo2" container>
+              
                   <Grid item>
                       <Typography gutterBottom>
                       {TitleArray[index]}
@@ -234,6 +238,7 @@ function SliderCalculator({index, mn, mx, value, setValue}){
                           />
                       
                   </Grid>
+
                   
               </Grid>
   
