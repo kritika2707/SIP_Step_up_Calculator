@@ -1,6 +1,9 @@
 import React from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, CartesianAxis } from 'recharts';
+function toIndianRupees(sum){
+  return sum.toString().replace(/\D/g, "").replace(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/g, "$1,");
+}
 
 function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement}){
   let months = InvestmentPeriod*12;
@@ -42,18 +45,18 @@ function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncreme
     </span>
     <h2 >
       <CurrencyRupeeIcon />
-      {Investment.toFixed(0)}
+      {toIndianRupees(Investment.toFixed(0))}
     </h2>
     <p >
       That's
       <span className="currencyRupeeInPara">
         <CurrencyRupeeIcon />
-        {(Investment - totalInvestmentTillDate).toFixed(0)}
+        {toIndianRupees((Investment - totalInvestmentTillDate).toFixed(0))}
       </span>{" "}
       as potential capital gains on your investment of
       <span className="currencyRupeeInPara2">
         <CurrencyRupeeIcon />
-        {totalInvestmentTillDate.toFixed(0)}
+        {toIndianRupees(totalInvestmentTillDate.toFixed(0))}
       </span>
     </p>
     </div>
