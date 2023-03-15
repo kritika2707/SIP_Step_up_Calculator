@@ -3,15 +3,15 @@ import SliderType from "./SliderType";
 import Graph from "./Graph";
 
 function Calculator() {
-  const [MonthlyInvestment, setMonthlyInvestment] = useState(49000);
+  const [MonthlyInvestment, setMonthlyInvestment] = useState(10000);
   function changeMonthlyInvestment(val) {
     setMonthlyInvestment(val);
   }
-  const [InvestmentPeriod, setInvestmentPeriod] = useState(25);
+  const [InvestmentPeriod, setInvestmentPeriod] = useState(5);
   function changeInvestmentPeriod(val) {
     setInvestmentPeriod(val);
   }
-  const [RateOfReturn, setRateOfReturn] = useState(9);
+  const [RateOfReturn, setRateOfReturn] = useState(6.5);
   function changeRateOfReturn(val) {
     setRateOfReturn(val);
   }

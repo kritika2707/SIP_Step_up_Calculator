@@ -1,6 +1,6 @@
 import React from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, CartesianAxis } from 'recharts';
 
 function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement}){
   let months = InvestmentPeriod*12;
@@ -57,7 +57,7 @@ function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncreme
       </span>
     </p>
     </div>
-    <ResponsiveContainer className="graph-div" width="90%" aspect={1.5}>
+    <ResponsiveContainer className="graph-div" width="90%" aspect={1.6}>
         <LineChart
           width={550}
           height={550}
@@ -66,11 +66,11 @@ function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncreme
           data={graph}
           >
           <XAxis dataKey="years"/>
-          <YAxis dataKey="investment" width={95}/>
+          <YAxis dataKey="investment" width={90}/>
           <Tooltip />
-          
-          <Line type="monotone" dataKey="investment" stroke="green" dot={false}/>
-          <Line type="monotone" dataKey="totalInvestmentTillDate" stroke="orange" dot={false}/>
+          <CartesianGrid/>
+          <Line type="monotone" dataKey="investment" stroke="green" dot={false} strokeWidth ={2}/>
+          <Line type="monotone" dataKey="totalInvestmentTillDate" stroke="red" dot={false} strokeWidth ={2}/>
         </LineChart>
       </ResponsiveContainer>
 
