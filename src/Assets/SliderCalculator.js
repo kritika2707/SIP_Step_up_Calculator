@@ -206,6 +206,8 @@ import { useState } from "react";
 
   
 function SliderCalculator({index, minimum, maximum,steps,value, setValue}){
+
+  
   const [inputValue, setInputValue] = useState(minimum);
     const handleSliderChange = (event, newValue) => {
         setValue(newValue);
@@ -214,14 +216,12 @@ function SliderCalculator({index, minimum, maximum,steps,value, setValue}){
 
     const handleInputChange = (event) => {
       let val = event.target.value;
-      // if(val < minimum){
-      //   alert("please enter valid num");
-      // }
+      if(val < minimum){
+        alert("please enter valid num");
+      }
         setValue(event.target.value === '' ? '' : Number(event.target.value));
         setInputValue(val);
         setValue(minimum);
-
-        
     };
     return (
 
