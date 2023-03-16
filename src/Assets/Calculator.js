@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import SliderType from "./SliderType";
 import Graph from "./Graph";
+import axios from "axios";
 
 function Calculator() {
   const [MonthlyInvestment, setMonthlyInvestment] = useState(10000);
   function changeMonthlyInvestment(val) {
     setMonthlyInvestment(val);
   }
-  const [InvestmentPeriod, setInvestmentPeriod] = useState(5);
+  const [InvestmentPeriod, setInvestmentPeriod] = useState(10);
   function changeInvestmentPeriod(val) {
     setInvestmentPeriod(val);
   }
@@ -15,10 +16,14 @@ function Calculator() {
   function changeRateOfReturn(val) {
     setRateOfReturn(val);
   }
-  const [YearlyIncrement, setYearlyIncrement] = useState(10);
+  const [YearlyIncrement, setYearlyIncrement] = useState(5);
   function changeYearlyIncrement(val) {
     setYearlyIncrement(val);
   }
+
+
+
+
   return (
     <>
       <div className="calculator">
