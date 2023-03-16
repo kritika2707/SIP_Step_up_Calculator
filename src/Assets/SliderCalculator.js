@@ -217,7 +217,7 @@ function SliderCalculator({index, minimum, maximum,steps,value, setValue}){
     const handleInputChange = (event) => {
       let val = event.target.value;
       if(val < minimum){
-        alert("please enter valid num");
+        alert("Please Enter valid value . Value should be greater than Default value");
       }
         setValue(event.target.value === '' ? '' : Number(event.target.value));
         setInputValue(val);
