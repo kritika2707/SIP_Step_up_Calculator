@@ -1,39 +1,43 @@
 import React from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, CartesianAxis } from 'recharts';
+
 function toIndianRupees(sum){
   return sum.toString().replace(/\D/g, "").replace(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/g, "$1,");
 }
 
+
 function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncrement}){
-  let months = InvestmentPeriod*12;
-  const graph = [
+    const graph = [
+      {
+       years: 0,
+       sipStepUp: 0,
+       investment: 0
+      }
+    ];
+    let PeriodInMonth = InvestmentPeriod*12;
+    RateOfReturn = (RateOfReturn)/1200;
+    let incrementedAmount = 0, TotalSIPWithStepUp =0 , CummulationAmount=0,YearlyInvestment = [],MonthlyInvest=0;
+    for(let i=1; i<=PeriodInMonth; i++)
+    {        
+    if(i!==1 && i%12==1)
     {
-      years: 0,
-      sipStepUp: 0,
-      totalInvestmentTillDate: 0,
-      investment: 0
+    incrementedAmount=Math.floor(MonthlyInvestment*(YearlyIncrement/100));
+    MonthlyInvestment=MonthlyInvestment + incrementedAmount
     }
-  ]
-  let sipStepUpGrowth = 0
-  let totalInvestmentTillDate = 0;
-  let Investment;
-  for (let i = 1; i <= months; i++) {
-    i % 12 == 0 && i != 1 && (MonthlyInvestment += MonthlyInvestment * (YearlyIncrement / 100))
-    sipStepUpGrowth += MonthlyInvestment * Math.pow(1 + RateOfReturn / 100, (months-i+1))
-    totalInvestmentTillDate += MonthlyInvestment
-    
+
+    MonthlyInvest += MonthlyInvestment;
+    CummulationAmount =MonthlyInvestment*(Math.pow((1+RateOfReturn),(PeriodInMonth-i+1)));  
+    TotalSIPWithStepUp += CummulationAmount;       
     if(i%12==0){
-      Investment = Math.round(MonthlyInvestment * i)
       const obj = {
-        years: i/12,
-        sipStepUp: Math.round(sipStepUpGrowth),
-        totalInvestmentTillDate: Math.round(totalInvestmentTillDate),
-        investment: Investment
+       years: i/12,
+       sipStepUp: Math.round(TotalSIPWithStepUp),
+       investment: Math.round(MonthlyInvest)
       }
       graph.push(obj)
+      }      
     }
-  }
   return (
   <>
       <div className="graphi">
@@ -45,18 +49,18 @@ function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncreme
     </span>
     <h2 >
       <CurrencyRupeeIcon />
-      {toIndianRupees(Investment.toFixed(0))}
+      {toIndianRupees(TotalSIPWithStepUp.toFixed(0))}
     </h2>
     <p >
       That's
       <span className="currencyRupeeInPara">
         <CurrencyRupeeIcon />
-        {toIndianRupees((Investment - totalInvestmentTillDate).toFixed(0))}
+        {toIndianRupees((TotalSIPWithStepUp - MonthlyInvest).toFixed(0))}
       </span>{" "}
       as potential capital gains on your investment of
       <span className="currencyRupeeInPara2">
         <CurrencyRupeeIcon />
-        {toIndianRupees(totalInvestmentTillDate.toFixed(0))}
+        {toIndianRupees(MonthlyInvest.toFixed(0))}
       </span>
     </p>
     </div>
@@ -69,11 +73,11 @@ function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncreme
           data={graph}
           >
           <XAxis dataKey="years"/>
-          <YAxis dataKey="investment" width={90}/>
+          <YAxis dataKey="sipStepUp" width={90}/>
           <Tooltip />
           <CartesianGrid/>
           <Line type="monotone" dataKey="investment" stroke="green" dot={false} strokeWidth ={2}/>
-          <Line type="monotone" dataKey="totalInvestmentTillDate" stroke="red" dot={false} strokeWidth ={2}/>
+          <Line type="monotone" dataKey="sipStepUp" stroke="red" dot={false} strokeWidth ={2}/>
         </LineChart>
       </ResponsiveContainer>
 
