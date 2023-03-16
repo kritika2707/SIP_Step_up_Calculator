@@ -39,7 +39,7 @@ function Graph({MonthlyInvestment, InvestmentPeriod, RateOfReturn, YearlyIncreme
       }      
     }
   return (
-  <>
+    <>
       <div className="graphi">
       <div className="textforgraph">
     <span >
